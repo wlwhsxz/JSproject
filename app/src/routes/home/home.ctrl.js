@@ -1,4 +1,7 @@
-const UserStorage = require("../../models/UserStorage")
+// MVC 디자인 분류 중 C(Controller)
+// 제어 관련
+
+const User = require("../../models/User");
 
 const output = {
     home: (req, res) => {
@@ -7,27 +10,19 @@ const output = {
     
     login: (req, res) => {
         res.render("home/login");
+    },
+
+    register: (req, res) => {
+        res.render("home/register");
     }
 };
 
 const process = {
     login: (req, res) => {
-        const id = req.body.id,
-            pw = req.body.pw;
+        const user = new User(req.body); // 클라이언트가 전달한 데이터를 넣어 user 클래스를 인스턴스화
+        const response = user.login(); // body 데이터를 갖고서 login() 메서드 실행
         
-        const users = UserStorage.getUsers("id", "pw"); // UserStorage 클래스의 getUsers 메소드를 이용하여 id, pw를 가져오기
-
-        const response = {};
-        if(users.id.includes(id)){
-            const idx = users.id.indexOf(id);
-            if(users.pw[idx] === pw){
-                response.success = true;
-                return res.json(response);
-            }
-        }
-        response.success = false;
-        response.msg = "로그인에 실패하였습니다"
-        return res.json(response);
+        return res.json(response);        
     },
 };
 

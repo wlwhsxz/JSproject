@@ -1,3 +1,5 @@
+// 해당 메인 파일에 Node.js 서버의 기본 설정을 저장
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
