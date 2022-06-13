@@ -1,10 +1,8 @@
 const id = document.querySelector("#id"),
     pw = document.querySelector("#pw"),
-    loginBtn = document.querySelector("#login"),
-    registerBtn = document.querySelector("#registerLink");
+    loginBtn = document.querySelector("login");
 
 loginBtn.addEventListener("click", login);
-// registerBtn.addEventListener("click", register);
 
 function login(){
     const req = {
@@ -31,7 +29,3 @@ function login(){
         console.error(new Error("로그인 중 에러 발생"));
     });
 };
-
-// function register(){
-//     location.href="./register"
-// }
