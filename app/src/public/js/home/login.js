@@ -1,6 +1,6 @@
 const id = document.querySelector("#id"),
     pw = document.querySelector("#pw"),
-    loginBtn = document.querySelector("login");
+    loginBtn = document.querySelector("#button");
 
 loginBtn.addEventListener("click", login);
 
