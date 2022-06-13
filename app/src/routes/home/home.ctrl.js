@@ -1,3 +1,5 @@
+const UserStorage = require("../../models/UserStorage")
+
 const output = {
     home: (req, res) => {
         res.render("home/index");
@@ -7,30 +9,25 @@ const output = {
         res.render("home/login");
     }
 };
-    
-const users = {
-    id: ["minu", "mino", "이민우"],
-    pw: ["123", "1234", "12345"],
-};
 
 const process = {
     login: (req, res) => {
         const id = req.body.id,
             pw = req.body.pw;
+        
+        const users = UserStorage.getUsers("id", "pw"); // UserStorage 클래스의 getUsers 메소드를 이용하여 id, pw를 가져오기
 
+        const response = {};
         if(users.id.includes(id)){
-            users.id.indexOf(id);
-            if(users.pw(idx) === pw){
-                return res.json({
-                    success: true,
-                })
+            const idx = users.id.indexOf(id);
+            if(users.pw[idx] === pw){
+                response.success = true;
+                return res.json(response);
             }
         }
-
-        return res.json({
-            success: false,
-            msg: "로그인에 실패하였습니다.",
-        });
+        response.success = false;
+        response.msg = "로그인에 실패하였습니다"
+        return res.json(response);
     },
 };
 
