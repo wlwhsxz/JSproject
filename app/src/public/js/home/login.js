@@ -4,7 +4,7 @@ const id = document.querySelector("#id"),
     registerBtn = document.querySelector("#registerLink");
 
 loginBtn.addEventListener("click", login);
-registerBtn.addEventListener("click", register);
+// registerBtn.addEventListener("click", register);
 
 function login(){
     const req = {
@@ -32,6 +32,6 @@ function login(){
     });
 };
 
-function register(){
-    location.href="./register"
-}
+// function register(){
+//     location.href="./register"
+// }
